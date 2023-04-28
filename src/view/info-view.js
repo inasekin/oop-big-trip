@@ -1,33 +1,31 @@
-import {createElement} from '../render.js';
+import View from './view.js';
+import {html} from '../utils.js';
 
-function createInfoTemplate() {
-  return `<section class="trip-main__trip-info  trip-info">
-            <div class="trip-info__main">
-              <h1 class="trip-info__title">Amsterdam &mdash; Chamonix &mdash; Geneva</h1>
+class InfoView extends View {
+  constructor() {
+    super();
 
-              <p class="trip-info__dates">Mar 18&nbsp;&mdash;&nbsp;20</p>
-            </div>
-
-            <p class="trip-info__cost">
-              Total: &euro;&nbsp;<span class="trip-info__cost-value">1230</span>
-            </p>
-          </section>`;
-}
-
-export default class InfoView {
-  getTemplate() {
-    return createInfoTemplate();
+    this.classList.add('trip-info');
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
+  /**
+   * @override
+   */
+  createHtml() {
+    return html`
+      <div class="trip-info__main">
+        <h1 class="trip-info__title">Amsterdam — Chamonix — Geneva</h1>
 
-    return this.element;
-  }
+        <p class="trip-info__dates">Mar 18&nbsp;—&nbsp;20</p>
+      </div>
 
-  removeElement() {
-    this.element = null;
+      <p class="trip-info__cost">
+        Total: €&nbsp;<span class="trip-info__cost-value">1230</span>
+      </p>
+    `;
   }
 }
+
+customElements.define('info-view', InfoView);
+
+export default InfoView;
