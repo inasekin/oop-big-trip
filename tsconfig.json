@@ -1,0 +1,20 @@
+{
+  "exclude": [
+    "build",
+    "node_modules"
+  ],
+
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "target": "esnext"
+  },
+
+  "typeAcquisition": {
+    "enable": true
+  }
+}
