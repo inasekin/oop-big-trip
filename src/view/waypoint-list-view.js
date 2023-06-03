@@ -2,6 +2,9 @@ import View from './view.js';
 import FormView from './form-view.js';
 import WaypointView from './waypoint-view.js';
 
+/**
+ * @extends {View<WaypointListViewState>}
+ */
 class WaypointListView extends View {
   constructor() {
     super();
@@ -14,19 +17,21 @@ class WaypointListView extends View {
    * @override
    */
   render() {
-    const views = new Array(4).fill().map(this.createItemView);
+    const views = this.state.items.map(this.createItemView);
 
     this.replaceChildren(...views);
   }
 
   /**
+   * @param {PointViewState} state
    * @return {FormView | WaypointView}
    */
-  createItemView(none, index) {
-    const view = (index === 0) ? new FormView() : new WaypointView();
+  createItemView(state) {
+    const view = state.isEditable ? new FormView() : new WaypointView();
 
     view.classList.add('trip-list__item');
     view.setAttribute('role', 'listitem');
+    view.state = state;
     view.render();
 
     return view;

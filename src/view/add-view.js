@@ -1,7 +1,7 @@
 import View from './view.js';
 import {html} from '../utils.js';
 
-class ButtonView extends View {
+class AddView extends View {
   /**
    * @override
    */
@@ -12,6 +12,6 @@ class ButtonView extends View {
   }
 }
 
-customElements.define('button-view', ButtonView);
+customElements.define('add-view', AddView);
 
-export default ButtonView;
+export default AddView;
