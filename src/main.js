@@ -4,6 +4,11 @@ import './view/button-view.js';
 import './view/sort-view.js';
 import './view/waypoint-list-view.js';
 
+import AppModel from './models/app-model.js';
+
+const appModel = new AppModel();
+console.log(appModel.getOfferGroups());
+
 /**
  * @type {InfoView}
  */
