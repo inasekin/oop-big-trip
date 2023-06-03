@@ -15,11 +15,18 @@
         <img class="page-header__logo" src="img/logo.png" width="42" height="42" alt="Trip logo">
 
         <div class="trip-main">
+          <!-- Сводка по маршруту -->
+          <info-view class="trip-main__trip-info"></info-view>
           <div class="trip-main__trip-controls  trip-controls">
             <div class="trip-controls__filters">
               <h2 class="visually-hidden">Filter events</h2>
+              <!-- Фильтр списка -->
+              <filter-view></filter-view>
             </div>
           </div>
+
+          <!-- Кнопка добавления -->
+          <add-view></add-view>
         </div>
       </div>
     </header>
@@ -27,6 +34,12 @@
       <div class="page-body__container">
           <section class="trip-events">
             <h2 class="visually-hidden">Trip events</h2>
+
+            <!-- Сортировка списка -->
+            <sort-view class="trip-events__trip-sort"></sort-view>
+
+            <!-- Список точек маршрута -->
+            <waypoint-list-view></waypoint-list-view>
           </section>
       </div>
     </main>

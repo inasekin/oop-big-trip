@@ -1,16 +1,21 @@
-import {render, RenderPosition} from './render';
-import FilterView from './view/filter-view';
-import InfoView from './view/info-view';
-import ButtonView from './view/button-view';
-import WaypointsPresenter from './presenter/waypoints-presenter';
+import './view/info-view.js';
+import './view/filter-view.js';
+import './view/add-view.js';
+import './view/sort-view.js';
+import './view/waypoint-list-view.js';
 
+import AppModel from './models/app-model.js';
 
-const tripFilters = document.querySelector('.trip-controls__filters');
-const tripMain = document.querySelector('.trip-main');
-const tripEvents = document.querySelector('.trip-events');
-const boardPresenter = new WaypointsPresenter({waypointsContainer: tripEvents});
+import InfoPresenter from './presenters/info-presenter.js';
+import AddPresenter from './presenters/add-presenter.js';
+import FilterPresenter from './presenters/filter-presenter.js';
+import SortPresenter from './presenters/sort-presenter.js';
+import WaypointListPresenter from './presenters/waypoint-list-presenter.js';
 
-render(new InfoView(), tripMain, RenderPosition.AFTERBEGIN);
-render(new FilterView(), tripFilters);
-render(new ButtonView(), tripMain);
-boardPresenter.init();
+const appModel = new AppModel();
+
+new InfoPresenter(document.querySelector('info-view'));
+new AddPresenter(document.querySelector('add-view'));
+new FilterPresenter(document.querySelector('filter-view'));
+new SortPresenter(document.querySelector('sort-view'));
+new WaypointListPresenter(document.querySelector('waypoint-list-view'), appModel);
