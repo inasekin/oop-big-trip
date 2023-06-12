@@ -17,6 +17,7 @@ function createElement(template) {
   const newElement = document.createElement('div');
   newElement.innerHTML = template;
 
+  // @ts-ignore
   return newElement.firstElementChild;
 }
 
@@ -35,6 +36,7 @@ function render(component, container, place = RenderPosition.BEFOREEND) {
     throw new Error('Container element doesn\'t exist');
   }
 
+  // @ts-ignore
   container.insertAdjacentElement(place, component.element);
 }
 
