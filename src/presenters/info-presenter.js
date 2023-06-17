@@ -6,9 +6,15 @@ import Presenter from './presenter.js';
 class InfoPresenter extends Presenter {
   /**
    * @override
+   * @return {InfoViewState}
    */
   createViewState() {
-    // TODO: InfoViewState
+    // TODO: Создать динамически
+    return {
+      places: 'Amsterdam — Chamonix — Geneva',
+      dates: 'Mar 18 — 20',
+      cost: '12301',
+    };
   }
 }
 
