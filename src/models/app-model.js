@@ -4,22 +4,29 @@ import destinations from '../mock/destinations.json';
 import offerGroups from '../mock/offers.json';
 
 class AppModel extends Model {
-  #points;
-  #destinations;
-  #offerGroups;
+  #points = points;
+  #destinations = destinations;
+  #offerGroups = offerGroups;
 
-  constructor() {
-    super();
-    this.#points = points;
-    this.#destinations = destinations;
-    this.#offerGroups = offerGroups;
-  }
+  /**
+   * @type {Record<SortType, (a: Point, b: Point) => number>}
+   */
+  #sortCallbackMap = {
+    day: (a, b) => Date.parse(a.startDateTime) - Date.parse(b.startDateTime),
+    event: () => 0,
+    time: (a, b) => AppModel.calcPointDuration(b) - AppModel.calcPointDuration(a),
+    price: (a, b) => b.basePrice - a.basePrice,
+    offers: () => 0,
+  };
 
   /**
    * @return {Array<Point>}
    */
-  getPoints() {
-    return this.#points.map(AppModel.adaptPointForClient);
+  getPoints(criteria = {}) {
+    const adaptedPoints = this.#points.map(AppModel.adaptPointForClient);
+    const sortCallback = this.#sortCallbackMap[criteria.sort] ?? this.#sortCallbackMap.day;
+
+    return adaptedPoints.sort(sortCallback);
   }
 
   /**
@@ -35,6 +42,14 @@ class AppModel extends Model {
   getOfferGroups() {
     // @ts-ignore
     return structuredClone(this.#offerGroups);
+  }
+
+  /**
+   * @param {Point} point
+   * @return {number}
+   */
+  static calcPointDuration(point) {
+    return Date.parse(point.endDateTime) - Date.parse(point.startDateTime);
   }
 
   /**

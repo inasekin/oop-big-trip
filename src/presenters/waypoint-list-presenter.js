@@ -10,7 +10,11 @@ class WaypointListPresenter extends Presenter {
    * @return {WaypointListViewState}
    */
   createViewState() {
-    const points = this.model.getPoints();
+    /**
+     * @type {UrlParams}
+     */
+    const urlParams = this.getUrlParams();
+    const points = this.model.getPoints(urlParams);
     const items = points.map(this.createPointViewState, this);
 
     return {items};
@@ -77,6 +81,13 @@ class WaypointListPresenter extends Presenter {
       this.setUrlParams(urlParams);
     };
 
+    /**
+     * @param {CustomEvent & {target: WaypointView}} event
+     */
+    const handleViewFavorite = (event) => {
+      this.togglePointIsFavorite(event.target);
+    };
+
     const handleViewClose = () => {
       /**
        * @type {UrlParams}
@@ -89,6 +100,17 @@ class WaypointListPresenter extends Presenter {
 
     this.view.addEventListener('open', handleViewOpen);
     this.view.addEventListener('close', handleViewClose);
+    this.view.addEventListener('favorite', handleViewFavorite);
+  }
+
+  /**
+   * @param {WaypointView} card
+   */
+  togglePointIsFavorite(card) {
+    const point = card.state;
+
+    point.isFavorite = !point.isFavorite;
+    card.render();
   }
 }
 
