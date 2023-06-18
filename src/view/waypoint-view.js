@@ -17,6 +17,8 @@ class WaypointView extends View {
   handleClick(event) {
     if (event.target.closest('.event__rollup-btn')) {
       this.notify('open');
+    } else if (event.target.closest('.event__favorite-btn')) {
+      this.notify('favorite');
     }
   }
 
