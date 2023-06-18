@@ -845,3 +845,7 @@ main {
   margin-bottom: 54px;
   margin-left: auto;
 }
+
+.event__photos-container {
+  overflow-x: auto;
+}

@@ -10,7 +10,7 @@
  * @typedef {import('./view/sort-view.js').default} SortView
  * @typedef {import('./view/waypoint-list-view.js').default} WaypointListView
  * @typedef {import('./view/waypoint-view.js').default} WaypointView
- * @typedef {import('./view/form-view.js').default} FromView
+ * @typedef {import('./view/form-view.js').default} FormView
  */
 
 /**
@@ -74,7 +74,7 @@
  * @prop {string} endTime
  * @prop {string} duration
  * @prop {number} basePrice
- * @prop {Array<Offer & {isSelected: boolean}>} offers
+ * @prop {Array<Offer & {isSelected?: boolean}>} offers
  * @prop {boolean} isFavorite
  * @prop {boolean} isEditable
  */
