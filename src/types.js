@@ -16,6 +16,7 @@
  * @typedef {import('./views/waypoint-view.js').default} WaypointView
  * @typedef {import('./views/form-view.js').default} FormView
  * @typedef {import('./views/no-waypoint-view.js').default} NoWaypointView
+ * @typedef {import('./views/overlay-view.js').default} OverlayView
  */
 
 /**
@@ -83,12 +84,19 @@
  * @prop {boolean} isFavorite
  * @prop {boolean} isEditable
  * @prop {boolean} isDraft
+ * @prop {boolean} [isSaving]
+ * @prop {boolean} [isDeleting]
  */
 
 /**
  * @typedef NoWaypointViewState
  * @prop {string} text
  * @prop {boolean} [isHidden]
+ */
+
+/**
+ * @typedef OverlayViewState
+ * @prop {boolean} isActive
  */
 
 /**
