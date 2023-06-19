@@ -116,6 +116,18 @@
  */
 
 /**
+ * @typedef {import('./services/api-service.js').default} ApiService
+ * @typedef {import('./services/service.js').default} Service
+ */
+
+/**
+ * @typedef ServiceOptions
+ * @prop {string} baseUrl
+ * @prop {number} minResponseTime
+ * @prop {string} authorization
+ */
+
+/**
  * @typedef PointInSnakeCase
  * @prop {string} id
  * @prop {PointType} type
