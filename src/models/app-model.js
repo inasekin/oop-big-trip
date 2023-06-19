@@ -1,12 +1,22 @@
 import Model from './model.js';
-import points from '../mock/points.json';
-import destinations from '../mock/destinations.json';
-import offerGroups from '../mock/offers.json';
 
 class AppModel extends Model {
-  #points = points;
-  #destinations = destinations;
-  #offerGroups = offerGroups;
+  #apiService;
+
+  /**
+   * @type {Array<PointInSnakeCase>}
+   */
+  #points;
+
+  /**
+   * @type {Array<Destination>}
+   */
+  #destinations;
+
+  /**
+   * @type {Array<OfferGroup>}
+   */
+  #offerGroups;
 
   /**
    * @type {Record<FilterType, (it: Point) => boolean>}
@@ -28,6 +38,38 @@ class AppModel extends Model {
     price: (a, b) => b.basePrice - a.basePrice,
     offers: () => 0,
   };
+
+  /**
+   * @param {ApiService} apiService
+   */
+  constructor(apiService) {
+    super();
+
+    this.#apiService = apiService;
+  }
+
+  /**
+   * @return {Promise<void>}
+   */
+  async load() {
+    try {
+      const data = await Promise.all([
+        this.#apiService.getPoints(),
+        this.#apiService.getDestinations(),
+        this.#apiService.getOfferGroups(),
+      ]);
+      const [points, destinations, offerGroups] = data;
+
+      this.#points = points;
+      this.#destinations = destinations;
+      this.#offerGroups = offerGroups;
+      this.notify('load');
+
+    } catch (error) {
+      this.notify('error', error);
+      throw error;
+    }
+  }
 
   /**
    * @param {{filter?: FilterType, sort?: SortType}} [criteria]
