@@ -23,10 +23,10 @@ const appModel = new AppModel(apiService);
 new NoWaypointPresenter(document.querySelector('no-waypoint-view'), appModel);
 
 appModel.load().then(() => {
-  new InfoPresenter(document.querySelector('info-view'));
+  new InfoPresenter(document.querySelector('info-view'), appModel);
   new AddPresenter(document.querySelector('add-view'));
-  new FilterPresenter(document.querySelector('filter-view'));
-  new SortPresenter(document.querySelector('sort-view'));
+  new FilterPresenter(document.querySelector('filter-view'), appModel);
+  new SortPresenter(document.querySelector('sort-view'), appModel);
   new WaypointListPresenter(document.querySelector('waypoint-list-view'), appModel);
   new OverlayPresenter(document.querySelector('overlay-view'), appModel);
 }).catch((error) => {
