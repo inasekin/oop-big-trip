@@ -7,14 +7,15 @@
  */
 
 /**
- * @typedef {import('./view/view.js').default} View
- * @typedef {import('./view/info-view.js').default} InfoView
- * @typedef {import('./view/filter-view.js').default} FilterView
- * @typedef {import('./view/add-view.js').default} AddView
- * @typedef {import('./view/sort-view.js').default} SortView
- * @typedef {import('./view/waypoint-list-view.js').default} WaypointListView
- * @typedef {import('./view/waypoint-view.js').default} WaypointView
- * @typedef {import('./view/form-view.js').default} FormView
+ * @typedef {import('./views/view.js').default} View
+ * @typedef {import('./views/info-view.js').default} InfoView
+ * @typedef {import('./views/filter-view.js').default} FilterView
+ * @typedef {import('./views/add-view.js').default} AddView
+ * @typedef {import('./views/sort-view.js').default} SortView
+ * @typedef {import('./views/waypoint-list-view.js').default} WaypointListView
+ * @typedef {import('./views/waypoint-view.js').default} WaypointView
+ * @typedef {import('./views/form-view.js').default} FormView
+ * @typedef {import('./views/no-waypoint-view.js').default} NoWaypointView
  */
 
 /**
@@ -81,11 +82,19 @@
  * @prop {Array<Offer & {isSelected?: boolean}>} offers
  * @prop {boolean} isFavorite
  * @prop {boolean} isEditable
+ * @prop {boolean} isDraft
+ */
+
+/**
+ * @typedef NoWaypointViewState
+ * @prop {string} text
+ * @prop {boolean} [isHidden]
  */
 
 /**
  * @typedef UrlParams
  * @prop {string} [edit]
+ * @prop {FilterType} [filter]
  * @prop {SortType} [sort]
  */
 
